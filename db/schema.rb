@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_01_28_175345) do
+ActiveRecord::Schema[8.0].define(version: 2025_01_28_180726) do
   create_table "products", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -25,6 +25,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_28_175345) do
     t.float "weight_for_macros"
     t.float "price"
     t.float "protein_per_euro"
+    t.integer "user_id", null: false
+    t.index ["user_id"], name: "index_products_on_user_id"
   end
 
   create_table "sessions", force: :cascade do |t|
@@ -44,5 +46,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_28_175345) do
     t.index ["email_address"], name: "index_users_on_email_address", unique: true
   end
 
+  add_foreign_key "products", "users"
   add_foreign_key "sessions", "users"
 end

@@ -3,7 +3,8 @@ class ProductsController < ApplicationController
 
   # GET /products or /products.json
   def index
-    @products = Product.all
+    @products = Current.user.products
+    @other_products = Product.where.not(user_id: Current.user.id)
   end
 
   # GET /products/1 or /products/1.json
@@ -23,6 +24,7 @@ class ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
     @product.protein_per_euro = calculate_protein_per_euro
+    @product.user_id = Current.session.user.id
 
     respond_to do |format|
       if @product.save
