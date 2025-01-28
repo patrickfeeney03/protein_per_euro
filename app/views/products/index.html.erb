@@ -20,7 +20,8 @@
       <th>ProtPerEuro</th>
     </tr>
     <% @products.each do |product| %>
-      <tr>
+      <tr data-controller="clickable-row" data-clickable-row-url-value="<%= product_path(product) %>"
+          data-action="click->clickable-row#goToUrl" style="cursor: pointer">
         <td><%= product.name %></td>
         <td><%= product.calories %></td>
         <td><%= product.price %></td>
