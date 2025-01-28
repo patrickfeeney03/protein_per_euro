@@ -15,16 +15,18 @@
   <table>
     <tr>
       <th>Name</th>
-      <th>Cals</th>
       <th>Price</th>
+      <th>Cals</th>
+      <th>Prot</th>
       <th>ProtPerEuro</th>
     </tr>
     <% @products.each do |product| %>
       <tr data-controller="clickable-row" data-clickable-row-url-value="<%= product_path(product) %>"
           data-action="click->clickable-row#goToUrl" style="cursor: pointer">
-        <td><%= product.name %></td>
-        <td><%= product.calories %></td>
+        <td><%= truncate(product.name, length: 20, omission: "...") %></td>
         <td><%= product.price %></td>
+        <td><%= product.calories %></td>
+        <td><%= product.protein %></td>
         <td><%= product.protein_per_euro %></td>
       </tr>
     <% end %>
