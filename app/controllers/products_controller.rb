@@ -58,13 +58,15 @@ class ProductsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_product
-      @product = Product.find(params.expect(:id))
-    end
 
-    # Only allow a list of trusted parameters through.
-    def product_params
-      params.fetch(:product, {})
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_product
+    @product = Product.find(params.expect(:id))
+  end
+
+  # Only allow a list of trusted parameters through.
+  def product_params
+    params.require(:product).permit(:name, :date_bought, :place_bought, :calories, :protein, :carbohydrates,
+                                   :fats, :total_weight, :weight_for_macros, :price)
+  end
 end
