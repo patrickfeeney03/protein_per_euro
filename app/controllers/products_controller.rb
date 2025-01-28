@@ -1,10 +1,11 @@
 class ProductsController < ApplicationController
+  allow_unauthenticated_access only: %i[ index show]
   before_action :set_product, only: %i[ show edit update destroy ]
 
   # GET /products or /products.json
   def index
-    @products = Current.user.products
-    @other_products = Product.where.not(user_id: Current.user.id)
+    @products = authenticated? ? Current.user.products.sorted : []
+    @other_products = authenticated? ? Product.where.not(user_id: Current.user.id).sorted : Product.all.sorted
   end
 
   # GET /products/1 or /products/1.json
@@ -70,12 +71,12 @@ class ProductsController < ApplicationController
   # Only allow a list of trusted parameters through.
   def product_params
     params.require(:product).permit(:name, :date_bought, :place_bought, :calories, :protein, :carbohydrates,
-                                   :fats, :total_weight, :weight_for_macros, :price)
+                                    :fats, :total_weight, :weight_for_macros, :price)
   end
 
   def calculate_protein_per_euro
     servings = @product.total_weight / @product.weight_for_macros
     total_protein = servings * @product.protein
-    "%.2f" % (total_protein/@product.price)
+    "%.2f" % (total_protein / @product.price)
   end
 end

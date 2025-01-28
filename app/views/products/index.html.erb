@@ -7,7 +7,7 @@
 
   <div class="flex justify-between items-center">
     <h1 class="font-bold text-4xl my-0">Home Page</h1>
-    <%= link_to "New product", new_product_path, class: "rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white block font-medium" %>
+    <%= link_to "New product", new_product_path, class: "rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white block font-medium" if authenticated? %>
   </div>
 
   <h2 class="mt-2 mb-2">Your Saved Products</h2>
@@ -57,4 +57,5 @@
       </tr>
     <% end %>
   </table>
+  <%= "There are no products in other accounts" unless @other_products.any? %>
 </div>
