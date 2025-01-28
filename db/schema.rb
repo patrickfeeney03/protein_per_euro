@@ -10,9 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_01_28_114222) do
+ActiveRecord::Schema[8.0].define(version: 2025_01_28_114551) do
   create_table "products", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
+    t.datetime "date_bought"
+    t.string "place_bought"
+    t.float "calories"
+    t.float "protein"
+    t.float "carbohydrates"
+    t.float "fats"
+    t.float "total_weight"
+    t.float "weight_for_macros"
+    t.float "price"
   end
 end
