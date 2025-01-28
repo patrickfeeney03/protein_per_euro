@@ -16,6 +16,7 @@
     <tr>
       <th>Name</th>
       <th>Price</th>
+      <th>Shop</th>
       <th>Cals</th>
       <th>Prot</th>
       <th>ProtPerEuro</th>
@@ -23,8 +24,9 @@
     <% @products.each do |product| %>
       <tr data-controller="clickable-row" data-clickable-row-url-value="<%= product_path(product) %>"
           data-action="click->clickable-row#goToUrl" style="cursor: pointer">
-        <td><%= truncate(product.name, length: 20, omission: "...") %></td>
+        <td><%= truncate(product.name, length: 15, omission: "...") %></td>
         <td><%= product.price %></td>
+        <td><%= truncate(product.place_bought, length: 15, omission: "...") %></td>
         <td><%= product.calories %></td>
         <td><%= product.protein %></td>
         <td><%= product.protein_per_euro %></td>
@@ -38,6 +40,7 @@
     <tr>
       <th>Name</th>
       <th>Price</th>
+      <th>Shop</th>
       <th>Cals</th>
       <th>Prot</th>
       <th>ProtPerEuro</th>
@@ -47,6 +50,7 @@
           data-action="click->clickable-row#goToUrl" style="cursor: pointer">
         <td><%= truncate(product.name, length: 20, omission: "...") %></td>
         <td><%= product.price %></td>
+        <td><%= truncate(product.place_bought, length: 15, omission: "...") %></td>
         <td><%= product.calories %></td>
         <td><%= product.protein %></td>
         <td><%= product.protein_per_euro %></td>
