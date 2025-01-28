@@ -1,0 +1,25 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  date_bought: 2025-01-28 11:33:37
+  place_bought: MyString
+  calories: 9.99
+  protein: 1.5
+  carbohydrates: 1.5
+  fats: 1.5
+  total_weight: 1.5
+  weight_for_macros: 1.5
+  price: 1.5
+
+two:
+  name: MyString
+  date_bought: 2025-01-28 11:33:37
+  place_bought: MyString
+  calories: 9.99
+  protein: 1.5
+  carbohydrates: 1.5
+  fats: 1.5
+  total_weight: 1.5
+  weight_for_macros: 1.5
+  price: 1.5
