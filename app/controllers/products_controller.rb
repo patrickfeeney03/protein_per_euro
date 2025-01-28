@@ -22,9 +22,7 @@ class ProductsController < ApplicationController
   # POST /products or /products.json
   def create
     @product = Product.new(product_params)
-    ppe = calculate_protein_per_euro
-    puts "ppe #{ppe}"
-    @product.protein_per_euro = ppe
+    @product.protein_per_euro = calculate_protein_per_euro
 
     respond_to do |format|
       if @product.save
@@ -76,6 +74,6 @@ class ProductsController < ApplicationController
   def calculate_protein_per_euro
     servings = @product.total_weight / @product.weight_for_macros
     total_protein = servings * @product.protein
-    total_protein/@product.price
+    "%.2f" % (total_protein/@product.price)
   end
 end

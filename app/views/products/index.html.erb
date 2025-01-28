@@ -10,36 +10,22 @@
     <%= link_to "New product", new_product_path, class: "rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white block font-medium" %>
   </div>
 
-<!--  <div id="products" class="min-w-full">-->
-    <%# if @products.any? %>
-      <%# @products.each do |product| %>
-        <%#= render product %>
-<!--        <p>-->
-          <%#= link_to "Show this product", product, class: "ml-2 rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
-<!--        </p>-->
-      <%# end %>
-    <%# else %>
-<!--      <p class="text-center my-10">No products found.</p>-->
-    <%# end %>
-<!--  </div>-->
-
   <h2 class="mt-2">Your Saved Products</h2>
+  <span>Touch any product to view more details</span>
   <table>
     <tr>
       <th>Name</th>
       <th>Cals</th>
       <th>Price</th>
       <th>ProtPerEuro</th>
-      <th></th>
     </tr>
     <% @products.each do |product| %>
-    <tr>
-      <td><%= product.name %></td>
-      <td><%= product.calories %></td>
-      <td><%= product.price %></td>
-      <td><%= product.protein_per_euro %></td>
-      <td><%= link_to "Show", product %></td>
-    </tr>
+      <tr>
+        <td><%= product.name %></td>
+        <td><%= product.calories %></td>
+        <td><%= product.price %></td>
+        <td><%= product.protein_per_euro %></td>
+      </tr>
     <% end %>
   </table>
   <%= "There are no products in your account" unless @products.any? %>
