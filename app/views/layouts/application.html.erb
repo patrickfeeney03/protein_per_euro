@@ -24,11 +24,11 @@
 </head>
 
 <body class="prose mx-auto">
-<nav class="flex justify-end mr-4 mt-4">
+<nav class="flex justify-end pr-5 pt-4">
   <% if authenticated? %>
-    <%= button_to "Sign Out", session_path, method: :delete, class: "mt-2 rounded-md px-3.5 py-2.5 text-white bg-gray-300 hover:bg-gray-200 font-medium" %>
-  <% else %>
-    <%= link_to "Sign In", new_session_path, class: "mt-2 rounded-md px-3.5 py-2.5 bg-gray-300 hover:bg-gray-200 inline-block font-medium" %>
+    <%= button_to "Sign Out", session_path, method: :delete, class: "rounded-md px-2 py-1 text-white bg-gray-300 hover:bg-gray-200 text-base" %>
+  <% elsif !current_page?(new_session_path) %>
+    <%= link_to "Sign In", new_session_path, class: "rounded-md px-2 py-1 text-white bg-gray-300 hover:bg-gray-200 inline-block text-base" %>
   <% end %>
 </nav>
 <main class="container mx-auto mt-2 px-5 flex">

@@ -1,4 +1,4 @@
 - [x] Add visibility to Products, i.e. public or not.
 - [ ] Fix Sign Up Layout mobile
-- [ ] Fix permissions for modifying products lol
+- [x] Fix permissions for modifying products lol
 - [ ] Add popup to verify deleting something
