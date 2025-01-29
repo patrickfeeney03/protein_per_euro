@@ -30,37 +30,37 @@
 
   <div class="flex items-center justify-between">
     <%= f.label :calories %>
-    <%= f.number_field :calories, step: 0.01, class: "w-1/2" %>
+    <%= f.number_field :calories, step: 0.01, max: 999, class: "w-1/2" %>
   </div>
 
   <div class="flex items-center justify-between">
     <%= f.label :protein %>
-    <%= f.number_field :protein, step: 0.01, class: "w-1/2" %>
+    <%= f.number_field :protein, step: 0.01, max: 999, class: "w-1/2" %>
   </div>
 
   <div class="flex items-center justify-between">
     <%= f.label :carbohydrates %>
-    <%= f.number_field :carbohydrates, step: 0.01, class: "w-1/2" %>
+    <%= f.number_field :carbohydrates, step: 0.01, max: 999, class: "w-1/2" %>
   </div>
 
   <div class="flex items-center justify-between">
     <%= f.label :fats %>
-    <%= f.number_field :fats, step: 0.01, class: "w-1/2" %>
+    <%= f.number_field :fats, step: 0.01, max: 999, class: "w-1/2" %>
   </div>
 
   <div class="flex items-center justify-between">
     <%= f.label :total_weight %>
-    <%= f.number_field :total_weight, step: 0.01, class: "w-1/2" %>
+    <%= f.number_field :total_weight, step: 0.01, max: 999, class: "w-1/2" %>
   </div>
 
   <div class="flex items-center justify-between">
     <%= f.label :weight_for_macros %>
-    <%= f.number_field :weight_for_macros, step: 0.01, class: "w-1/2" %>
+    <%= f.number_field :weight_for_macros, step: 0.01, max: 999, class: "w-1/2" %>
   </div>
 
   <div class="flex items-center justify-between">
     <%= f.label :price %>
-    <%= f.number_field :price, step: 0.01, class: "w-1/2" %>
+    <%= f.number_field :price, step: 0.01, max: 999, class: "w-1/2" %>
   </div>
 
   <div class="inline">

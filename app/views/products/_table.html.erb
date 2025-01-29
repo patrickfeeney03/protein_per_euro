@@ -1,0 +1,21 @@
+<table class="mt-4 text-sm table-fixed w-full">
+  <tr>
+    <th class="w-2/6">Name</th>
+    <th class="w-1/6">Price</th>
+    <th class="w-2/6">Shop</th>
+    <th class="w-1/6">Cals</th>
+    <th class="w-1/6">Prot</th>
+    <th class="w-1/6">Prot/€</th>
+  </tr>
+  <% products.each do |product| %>
+    <tr data-controller="clickable-row" data-clickable-row-url-value="<%= product_path(product) %>"
+        data-action="click->clickable-row#goToUrl" style="cursor: pointer">
+      <td class="whitespace-normal break-words"><%= truncate(product.name, length: 25, omission: "") %></td>
+      <td class="whitespace-normal break-words"><%= format_number_table(product.price) %></td>
+      <td class="whitespace-normal break-words"><%= truncate(product.place_bought, length: 15, omission: "") %></td>
+      <td class="whitespace-normal break-words"><%= format_number_table(product.calories) %></td>
+      <td class="whitespace-normal break-words"><%= format_number_table(product.protein) %></td>
+      <td class="whitespace-normal break-words"><%= format_number_table(product.protein_per_euro) %></td>
+    </tr>
+  <% end %>
+</table>

@@ -12,50 +12,10 @@
 
   <h2 class="mt-2 mb-2">Your Saved Products</h2>
   <span>Touch any product to view more details</span>
-  <table class="mt-4">
-    <tr>
-      <th>Name</th>
-      <th>Price</th>
-      <th>Shop</th>
-      <th>Cals</th>
-      <th>Prot</th>
-      <th>ProtPerEuro</th>
-    </tr>
-    <% @products.each do |product| %>
-      <tr data-controller="clickable-row" data-clickable-row-url-value="<%= product_path(product) %>"
-          data-action="click->clickable-row#goToUrl" style="cursor: pointer">
-        <td><%= truncate(product.name, length: 15, omission: "...") %></td>
-        <td><%= product.price %></td>
-        <td><%= truncate(product.place_bought, length: 15, omission: "...") %></td>
-        <td><%= product.calories %></td>
-        <td><%= product.protein %></td>
-        <td><%= product.protein_per_euro %></td>
-      </tr>
-    <% end %>
-  </table>
+  <%= render "table", products: @products %>
   <%= "There are no products in your account" unless @products.any? %>
 
   <h2 class="mt-2 mb-2">Products from other people</h2>
-  <table class="mt-4">
-    <tr>
-      <th>Name</th>
-      <th>Price</th>
-      <th>Shop</th>
-      <th>Cals</th>
-      <th>Prot</th>
-      <th>ProtPerEuro</th>
-    </tr>
-    <% @other_products.each do |product| %>
-      <tr data-controller="clickable-row" data-clickable-row-url-value="<%= product_path(product) %>"
-          data-action="click->clickable-row#goToUrl" style="cursor: pointer">
-        <td><%= truncate(product.name, length: 20, omission: "...") %></td>
-        <td><%= product.price %></td>
-        <td><%= truncate(product.place_bought, length: 15, omission: "...") %></td>
-        <td><%= product.calories %></td>
-        <td><%= product.protein %></td>
-        <td><%= product.protein_per_euro %></td>
-      </tr>
-    <% end %>
-  </table>
+  <%= render "table", products: @other_products %>
   <%= "There are no products in other accounts" unless @other_products.any? %>
 </div>
