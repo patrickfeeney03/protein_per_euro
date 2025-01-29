@@ -9,7 +9,7 @@
 
   <%= render @product %>
 
-  <% if authenticated? %>
+  <% if authenticated? && Current.user.id == @product.user.id %>
     <%= link_to "Edit this product", edit_product_path(@product), class: "mt-2 rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
     <%= link_to "Back to products", products_path, class: "ml-2 rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
     <div class="inline-block">

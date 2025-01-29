@@ -19,6 +19,7 @@ class ProductsController < ApplicationController
 
   # GET /products/1/edit
   def edit
+    redirect_to product_path(@product) if Current.user.id != @product.user.id
   end
 
   # POST /products or /products.json
@@ -40,6 +41,11 @@ class ProductsController < ApplicationController
 
   # PATCH/PUT /products/1 or /products/1.json
   def update
+    if Current.user.id != @product.user.id
+      redirect_to product_path(@product)
+      return
+    end
+
     respond_to do |format|
       if @product.update(product_params)
         format.html { redirect_to @product, notice: "Product was successfully updated." }
@@ -53,6 +59,11 @@ class ProductsController < ApplicationController
 
   # DELETE /products/1 or /products/1.json
   def destroy
+    if Current.user.id != @product.user.id
+      redirect_to product_path(@product)
+      return
+    end
+
     @product.destroy!
 
     respond_to do |format|
