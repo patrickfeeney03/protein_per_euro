@@ -26,9 +26,9 @@
 <body class="prose mx-auto">
 <nav class="flex justify-end mr-4 mt-4">
   <% if authenticated? %>
-    <%= button_to "Sign Out", session_path, method: :delete, class: "mt-2 rounded-md px-3.5 py-2.5 text-white bg-gray-400 hover:bg-gray-300 font-medium" %>
+    <%= button_to "Sign Out", session_path, method: :delete, class: "mt-2 rounded-md px-3.5 py-2.5 text-white bg-gray-300 hover:bg-gray-200 font-medium" %>
   <% else %>
-    <%= link_to "Sign In", new_session_path, class: "mt-2 rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
+    <%= link_to "Sign In", new_session_path, class: "mt-2 rounded-md px-3.5 py-2.5 bg-gray-300 hover:bg-gray-200 inline-block font-medium" %>
   <% end %>
 </nav>
 <main class="container mx-auto mt-2 px-5 flex">
