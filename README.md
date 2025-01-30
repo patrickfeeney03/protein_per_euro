@@ -4,8 +4,8 @@
 - [x] Add popup to verify deleting something
 - [x] Fix back and edit buttons being underneath each other when using on mobile
 - [x] Dont crash when submitting empty form. Now I will make some fields mandatory.
-- [ ] Make sure that I'm using 100 grams for showing protein etc in table view
-- [ ] Allow weight to be over 999 come on
+- [x] Make sure that I'm using 100 grams for showing protein etc in table view
+- [x] Allow weight to be over 999 come on
 - [ ] Show prices in different currencies
-- [ ] Recalculate protein per euro when updating
+- [x] Recalculate protein per euro when updating
 - [ ] Add the option to attach photos to each product. Photos from the front and back to show nutritional table etc
