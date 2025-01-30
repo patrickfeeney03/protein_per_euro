@@ -2,3 +2,5 @@
 - [x] Fix Sign Up Layout mobile
 - [x] Fix permissions for modifying products lol
 - [ ] Add popup to verify deleting something
+- [ ] Make sure that I'm using 100 grams for showing protein etc in table view
+- [ ] Allow weight to be over 999 come on
