@@ -15,7 +15,7 @@
       <td class="whitespace-normal break-words">
         <%= truncate(product.place_bought, length: 15, omission: "") %></td>
       <td class="whitespace-normal break-words">
-        <%= format_number_table(product.price) %></td>
+        <%= format_number_table(product.price) %>€</td>
       <td class="whitespace-normal break-words">
         <%= format_number_table(display_value_for_100_grams(product.calories, product)) %></td>
       <td class="whitespace-normal break-words">
