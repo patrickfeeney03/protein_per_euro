@@ -8,5 +8,5 @@
 - [x] Allow weight to be over 999 come on
 - [ ] Show prices in different currencies
 - [x] Recalculate protein per euro when updating
-- [ ] Add the option to attach photos to each product. Photos from the front and back to show nutritional table etc
+- [x] Add the option to attach photos to each product. Photos from the front and back to show nutritional table etc
 - [ ] render smaller versions of the images or something.
