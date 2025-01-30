@@ -3,7 +3,7 @@
 - [x] Fix permissions for modifying products lol
 - [ ] Add popup to verify deleting something
 - [ ] Fix back and edit buttons being underneath each other when using on mobile
-- [ ] Dont crash when submitting empty form
+- [x] Dont crash when submitting empty form. Now I will make some fields mandatory.
 - [ ] Make sure that I'm using 100 grams for showing protein etc in table view
 - [ ] Allow weight to be over 999 come on
 - [ ] Show prices in different currencies
