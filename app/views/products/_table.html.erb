@@ -11,17 +11,17 @@
     <tr data-controller="clickable-row" data-clickable-row-url-value="<%= product_path(product) %>"
         data-action="click->clickable-row#goToUrl" style="cursor: pointer">
       <td class="whitespace-normal break-words">
-        <%= truncate(product.name, length: 25, omission: "") %></td>
+        <%= truncate(product.name, length: 25, omission: "") if product.name? %></td>
       <td class="whitespace-normal break-words">
-        <%= truncate(product.place_bought, length: 15, omission: "") %></td>
+        <%= truncate(product.place_bought, length: 15, omission: "") if product.place_bought? %></td>
       <td class="whitespace-normal break-words">
-        <%= format_number_table(product.price) %>€</td>
+        <%= format_number_table(product.price) if product.price? %>€</td>
       <td class="whitespace-normal break-words">
-        <%= format_number_table(display_value_for_100_grams(product.calories, product)) %></td>
+        <%= format_number_table(display_value_for_100_grams(product.calories, product)) if product.calories? %></td>
       <td class="whitespace-normal break-words">
-        <%= format_number_table(display_value_for_100_grams(product.protein, product)) %></td>
+        <%= format_number_table(display_value_for_100_grams(product.protein, product)) if product.protein? %></td>
       <td class="whitespace-normal break-words">
-        <%= format_number_table(product.protein_per_euro) %></td>
+        <%= format_number_table(product.protein_per_euro) if product.protein_per_euro? %></td>
     </tr>
   <% end %>
 </table>

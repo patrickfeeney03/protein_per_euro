@@ -46,10 +46,8 @@ class ProductsController < ApplicationController
       return
     end
 
-    @product.protein_per_euro = calculate_protein_per_euro
-
     respond_to do |format|
-      if @product.update(product_params)
+      if @product.update(product_params.merge(protein_per_euro: calculate_protein_per_euro))
         format.html { redirect_to @product, notice: "Product was successfully updated." }
         format.json { render :show, status: :ok, location: @product }
       else
@@ -88,8 +86,10 @@ class ProductsController < ApplicationController
   end
 
   def calculate_protein_per_euro
+    return 0 if @product.weight_for_macros == 0
     servings = @product.total_weight / @product.weight_for_macros
     total_protein = servings * @product.protein
+    return total_protein if @product.price == 0
     "%.2f" % (total_protein / @product.price)
   end
 end

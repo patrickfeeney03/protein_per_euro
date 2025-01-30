@@ -1,0 +1,22 @@
+<ul class="mt-0">
+  <li class="m-0">Calories:
+    <%= product.calories.nil? ? "?" :
+          multiply_to_100 ?
+            format_number_table(display_value_for_100_grams(product.calories, product)) :
+            format_number_table(product.calories) %></li>
+  <li class="m-0">Protein:
+    <%= product.protein.nil? ? "?" :
+          multiply_to_100 ?
+            format_number_table(display_value_for_100_grams(product.protein, product)) :
+            format_number_table(product.protein) %></li>
+  <li class="m-0">Carbohydrates:
+    <%= product.carbohydrates.nil? ? "?" :
+          multiply_to_100 ?
+            format_number_table(display_value_for_100_grams(product.carbohydrates, product)) :
+            format_number_table(product.carbohydrates) %></li>
+  <li class="m-0">Fats:
+    <%= product.fats.nil? ? "?" :
+          multiply_to_100 ?
+            format_number_table(display_value_for_100_grams(product.fats, product)) :
+            format_number_table(product.fats) %></li>
+</ul>

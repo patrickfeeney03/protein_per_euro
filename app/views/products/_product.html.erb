@@ -5,7 +5,7 @@
   <span class="font-bold">Name:</span> <%= product.name %>
 </div>
 
-<div>Date bought: <%= product.date_bought.strftime("%v") %></div>
+<div>Date bought: <%= product.date_bought.strftime("%v") if product.date_bought? %></div>
 
 <div>Place bought: <%= product.place_bought %></div>
 
@@ -13,39 +13,26 @@
   <span class="font-bold">Protein Per Euro:</span> <%= product.protein_per_euro %>
 </div>
 
-<div>Total weight: <%= format_number_table(product.total_weight) %> grams</div>
-<div>Price: <%= format_number_table(product.price) %>€</div>
+<div>Total weight: <%= format_number_table(product.total_weight) if product.total_weight? %> grams</div>
+<div>Price: <%= format_number_table(product.price) unless product.price.nil? %>€</div>
 
 <% if product.weight_for_macros != 100 %>
   <div class="mt-3 mb-3">
     <span class="font-bold">Values per 100 grams:</span>
-    <ul class="mt-0">
-      <li class="m-0">Calories: <%= format_number_table(display_value_for_100_grams(product.calories, product)) %></li>
-      <li class="m-0">Protein: <%= format_number_table(display_value_for_100_grams(product.protein, product)) %></li>
-      <li class="m-0">Carbohydrates: <%= format_number_table(display_value_for_100_grams(product.carbohydrates, product)) %></li>
-      <li class="m-0">Fats: <%= format_number_table(display_value_for_100_grams(product.fats, product)) %></li>
-    </ul>
+    <%= render "product_macros", product: product, multiply_to_100: true %>
   </div>
   <div class="mt-3 mb-3">
-    <span class="font-bold">Values per <%= format_number_table(product.weight_for_macros) %> grams serving:</span>
-    <ul class="mt-0">
-      <li class="m-0">Calories: <%= format_number_table(product.calories) %></li>
-      <li class="m-0">Protein: <%= format_number_table(product.protein) %></li>
-      <li class="m-0">Carbohydrates: <%= format_number_table(product.carbohydrates) %></li>
-      <li class="m-0">Fats: <%= format_number_table(product.fats) %></li>
-    </ul>
+    <span class="font-bold">Values per <%= format_number_table(product.weight_for_macros) if product.weight_for_macros %> grams serving:</span>
+    <%= render "product_macros", product: product, multiply_to_100: false %>
   </div>
 <% else %>
   <div class="mt-3 mb-3">
     <span class="font-bold">Values per 100 grams:</span>
-    <div>Calories: <%= format_number_table(product.calories) %></div>
-    <div>Protein: <%= format_number_table(product.protein) %></div>
-    <div>Carbohydrates: <%= format_number_table(product.carbohydrates) %></div>
-    <div>Fats: <%= format_number_table(product.fats) %></div>
+    <%= render "product_macros", product: product, multiply_to_100: false %>
   </div>
 <% end %>
 
-<div>Weight used for calculations: <%= format_number_table(product.weight_for_macros) %> grams</div>
+<div>Weight used for calculations: <%= format_number_table(product.weight_for_macros) if product.weight_for_macros %> grams</div>
 <% if product.image.present? %>
   <details class="mt-4 mb-4">
     <summary class="cursor-pointer font-bold text-base bg-gray-200 hover:bg-gray-100 p-2 rounded-md ">
