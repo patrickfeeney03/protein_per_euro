@@ -1,8 +1,8 @@
 - [x] Add visibility to Products, i.e. public or not.
 - [x] Fix Sign Up Layout mobile
 - [x] Fix permissions for modifying products lol
-- [ ] Add popup to verify deleting something
-- [ ] Fix back and edit buttons being underneath each other when using on mobile
+- [x] Add popup to verify deleting something
+- [x] Fix back and edit buttons being underneath each other when using on mobile
 - [x] Dont crash when submitting empty form. Now I will make some fields mandatory.
 - [ ] Make sure that I'm using 100 grams for showing protein etc in table view
 - [ ] Allow weight to be over 999 come on
