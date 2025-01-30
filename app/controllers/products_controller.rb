@@ -84,7 +84,7 @@ class ProductsController < ApplicationController
   # Only allow a list of trusted parameters through.
   def product_params
     params.require(:product).permit(:name, :date_bought, :place_bought, :calories, :protein, :carbohydrates,
-                                    :fats, :total_weight, :weight_for_macros, :price)
+                                    :fats, :total_weight, :weight_for_macros, :price, :image)
   end
 
   def calculate_protein_per_euro

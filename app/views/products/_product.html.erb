@@ -46,3 +46,13 @@
 <% end %>
 
 <div>Weight used for calculations: <%= format_number_table(product.weight_for_macros) %> grams</div>
+<% if product.image.present? %>
+  <details class="mt-4 mb-4">
+    <summary class="cursor-pointer font-bold text-base bg-gray-200 hover:bg-gray-100 p-2 rounded-md ">
+      Additional Information Image
+    </summary>
+    <div>
+      <%= image_tag product.image, class: "mt-2" %>
+    </div>
+  </details>
+<% end %>
