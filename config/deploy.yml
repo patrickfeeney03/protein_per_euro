@@ -7,7 +7,7 @@ image: patrickgmit/protein_per_euro
 # Deploy to these servers.
 servers:
   web:
-    - 5.9.107.241
+    - 209.38.167.193
   # job:
   #   hosts:
   #     - 192.168.0.1
@@ -18,8 +18,8 @@ servers:
 #
 # Note: If using Cloudflare, set encryption mode in SSL/TLS setting to "Full" to enable CF-to-app encryption.
 proxy:
-  ssl: true
-  host: protein.arraylist.me
+#  ssl: true
+  host: 209.38.167.193
 
 # Credentials for your image host.
 registry:
