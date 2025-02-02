@@ -13,13 +13,13 @@
 
   <div class="flex items-center justify-between">
     <%= f.label :name %>
-    <%= f.text_field :name, required: true, min_length: 3, class: "w-1/2" %>
+    <%= f.text_field :name, class: "w-1/2" %>
   </div>
 
   <div class="flex items-center justify-between">
     <%= f.label :date_bought %>
     <div class="w-1/2 flex flex-col">
-      <%= f.date_select :date_bought, { required: true }, { class: "w-full" } %>
+      <%= f.date_select :date_bought, { class: "w-full" } %>
     </div>
   </div>
 
@@ -30,37 +30,37 @@
 
   <div class="flex items-center justify-between">
     <%= f.label :calories %>
-    <%= f.number_field :calories, required: true, step: 0.01, min: 0.1, max: 999, class: "w-1/2" %>
+    <%= f.number_field :calories, step: 0.01, class: "w-1/2" %>
   </div>
 
   <div class="flex items-center justify-between">
     <%= f.label :protein %>
-    <%= f.number_field :protein, required: true, step: 0.01, min: 0.1, max: 999, class: "w-1/2" %>
+    <%= f.number_field :protein, step: 0.01, class: "w-1/2" %>
   </div>
 
   <div class="flex items-center justify-between">
     <%= f.label :carbohydrates %>
-    <%= f.number_field :carbohydrates, step: 0.01, min: 0.1, max: 999, class: "w-1/2" %>
+    <%= f.number_field :carbohydrates, step: 0.01, class: "w-1/2" %>
   </div>
 
   <div class="flex items-center justify-between">
     <%= f.label :fats %>
-    <%= f.number_field :fats, step: 0.01, max: 999, class: "w-1/2" %>
+    <%= f.number_field :fats, step: 0.01, class: "w-1/2" %>
   </div>
 
   <div class="flex items-center justify-between">
     <%= f.label :total_weight %>
-    <%= f.number_field :total_weight, required: true, step: 0.01, min: 1, max: 9999, class: "w-1/2" %>
+    <%= f.number_field :total_weight, step: 0.01, class: "w-1/2" %>
   </div>
 
   <div class="flex items-center justify-between">
     <%= f.label :weight_for_macros %>
-    <%= f.number_field :weight_for_macros, required: true, step: 0.01, min: 1, max: 999, class: "w-1/2" %>
+    <%= f.number_field :weight_for_macros, step: 0.01, class: "w-1/2" %>
   </div>
 
   <div class="flex items-center justify-between">
     <%= f.label :price %>
-    <%= f.number_field :price, required: true, step: 0.01, min: 0.1, max: 999, class: "w-1/2" %>
+    <%= f.number_field :price, step: 0.01, class: "w-1/2" %>
   </div>
 
   <div class="flex items-center justify-between">

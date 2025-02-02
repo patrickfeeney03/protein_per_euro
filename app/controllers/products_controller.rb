@@ -25,7 +25,6 @@ class ProductsController < ApplicationController
   # POST /products or /products.json
   def create
     @product = Product.new(product_params)
-    @product.protein_per_euro = calculate_protein_per_euro
     @product.user_id = Current.session.user.id
 
     respond_to do |format|
@@ -47,7 +46,7 @@ class ProductsController < ApplicationController
     end
 
     respond_to do |format|
-      if @product.update(product_params.merge(protein_per_euro: calculate_protein_per_euro))
+      if @product.update(product_params)
         format.html { redirect_to @product, notice: "Product was successfully updated." }
         format.json { render :show, status: :ok, location: @product }
       else
@@ -83,13 +82,5 @@ class ProductsController < ApplicationController
   def product_params
     params.require(:product).permit(:name, :date_bought, :place_bought, :calories, :protein, :carbohydrates,
                                     :fats, :total_weight, :weight_for_macros, :price, :image)
-  end
-
-  def calculate_protein_per_euro
-    return 0 if @product.weight_for_macros == 0
-    servings = @product.total_weight / @product.weight_for_macros
-    total_protein = servings * @product.protein
-    return total_protein if @product.price == 0
-    "%.2f" % (total_protein / @product.price)
   end
 end
