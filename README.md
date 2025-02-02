@@ -11,3 +11,5 @@
 - [x] Add the option to attach photos to each product. Photos from the front and back to show nutritional table etc
 - [ ] render smaller versions of the images or something.
 - [x] Sean fully broke the Index page and the show page for product 26. Fix it
+- [ ] Remove validation on form side. Also, form currently doesnt allow to type 0 for carbs etc.
+- [x] Add something to indicate that the data is not backed up by a symbol.
