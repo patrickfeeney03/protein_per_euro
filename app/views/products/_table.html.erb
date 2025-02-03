@@ -1,11 +1,11 @@
 <table class="mt-4 text-sm table-fixed w-full">
   <tr>
     <th class="w-2/6">Name</th>
-    <th class="w-1/4">Shop</th>
+    <th class="w-1/6">Shop</th>
     <th class="w-1/6">Price</th>
-    <th class="w-1/6 whitespace-normal break-words">Cals/100</th>
-    <th class="w-1/6 whitespace-normal break-words">Prot/100</th>
-    <th class="w-1/6 whitespace-normal break-words">Prot/€</th>
+    <th class="w-1/6 break-all">Cals</th>
+<!--    <th class="w-1/6 whitespace-normal break-words">Prot/100</th>-->
+    <th class="w-1/6 break-all">Prot/€</th>
   </tr>
   <% products.each do |product| %>
     <tr data-controller="clickable-row" data-clickable-row-url-value="<%= product_path(product) %>"
@@ -24,8 +24,8 @@
       </td>
       <td class="whitespace-normal break-words">
         <%= format_number_table(display_value_for_100_grams(product.calories, product)) if product.calories? %></td>
-      <td class="whitespace-normal break-words">
-        <%= format_number_table(display_value_for_100_grams(product.protein, product)) if product.protein? %></td>
+<!--      <td class="whitespace-normal break-words">-->
+<!--        <%#= format_number_table(display_value_for_100_grams(product.protein, product)) if product.protein? %></td>-->
       <td class="whitespace-normal break-words">
         <%= format_number_table(product.protein_per_euro) if product.protein_per_euro? %></td>
     </tr>
