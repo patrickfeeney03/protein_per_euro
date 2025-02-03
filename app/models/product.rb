@@ -13,6 +13,8 @@ class Product < ApplicationRecord
   validates :weight_for_macros, numericality: { greater_than_or_equal_to: 1 }
   validates :price, numericality: { greater_than_or_equal_to: 0.1 }
 
+  validates :image, size: { less_than: 2.megabytes }, content_type: %w[image/jpeg image/png]
+
   def calculate_protein_per_euro
     return 0 if self.weight_for_macros == 0
     servings = self.total_weight / self.weight_for_macros

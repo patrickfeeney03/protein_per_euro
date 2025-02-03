@@ -1,6 +1,7 @@
 class ProductsController < ApplicationController
   allow_unauthenticated_access only: %i[ index show]
   before_action :set_product, only: %i[ show edit update destroy ]
+  before_action :remove_exif, only: %i[ create update ]
 
   # GET /products or /products.json
   def index
@@ -82,5 +83,14 @@ class ProductsController < ApplicationController
   def product_params
     params.require(:product).permit(:name, :date_bought, :place_bought, :calories, :protein, :carbohydrates,
                                     :fats, :total_weight, :weight_for_macros, :price, :image)
+  end
+
+  def remove_exif
+    image = product_params[:image]
+    return if image.nil? || image.content_type != "image/jpeg"
+    ImageProcessing::MiniMagick
+      .source(image)
+      .strip
+      .call(destination: image.tempfile.path)
   end
 end
