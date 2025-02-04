@@ -9,15 +9,23 @@ class ProductsController < ApplicationController
     # @products = authenticated? ? Current.user.products.sorted : []
     @other_products = authenticated? ? Product.where.not(user_id: Current.user.id).sorted : Product.all.sorted
 
-    if params[:sort_by].present?
-      direction = params[:direction] == "desc" ? "desc" : "asc"
-      @products = @products.order("#{params[:sort_by]} #{direction}")
+    if params[:sort_by].present? && params[:direction].present?
+      sort_columns = params[:sort_by]
+      sort_directions = params[:direction]
+
+      sort_columns.each_pair do | pair|
+        direction = sort_directions[pair[0]] == "desc" ? "desc" : "asc"
+
+        @products = @products.order("#{pair[1]} #{direction}")
+      end
+
+      # sort_columns.each_with_index do |column, index|
+      #   direction = sort_directions[index] == "desc" ? "desc" : "asc"
       #
-      # respond_to do |format|
-      #   format.html
-      #   format.turbo_stream
+      #   @products = @products.order("#{column} #{direction}")
       # end
     end
+    @sort_by = params[:sort_by]
   end
 
   # GET /products/1 or /products/1.json
