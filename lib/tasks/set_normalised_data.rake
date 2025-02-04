@@ -13,6 +13,9 @@ task set_normalised_data: :environment do
     product.normalised_fats = fats * multiplier unless fats.nil?
     product.normalised_calories = calories * multiplier unless calories.nil?
 
+    product.normalised_name = product.name.downcase
+    product.normalised_place_bought = product.place_bought.downcase
+
     product.save
   end
 end

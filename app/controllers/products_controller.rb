@@ -5,8 +5,19 @@ class ProductsController < ApplicationController
 
   # GET /products or /products.json
   def index
-    @products = authenticated? ? Current.user.products.sorted : []
+    @products = authenticated? ? Current.user.products : []
+    # @products = authenticated? ? Current.user.products.sorted : []
     @other_products = authenticated? ? Product.where.not(user_id: Current.user.id).sorted : Product.all.sorted
+
+    if params[:sort_by].present?
+      direction = params[:direction] == "desc" ? "desc" : "asc"
+      @products = @products.order("#{params[:sort_by]} #{direction}")
+      #
+      # respond_to do |format|
+      #   format.html
+      #   format.turbo_stream
+      # end
+    end
   end
 
   # GET /products/1 or /products/1.json

@@ -1,11 +1,11 @@
-<table class="mt-4 text-sm table-fixed w-full">
+<table class="mt-4 text-sm table-fixed w-full" data-controller="sortable" data-sortable-url-value="<%= products_path %>">
   <tr>
-    <th class="w-2/6">Name</th>
-    <th class="w-1/6">Shop</th>
-    <th class="w-1/6">Price</th>
-    <th class="w-1/6 break-all">Cals</th>
+    <th class="w-2/6" data-action="click->sortable#sort" data-column="normalised_name" data-direction="asc">Name</th>
+    <th class="w-1/6" data-action="click->sortable#sort" data-column="normalised_place_bought" data-direction="asc">Shop</th>
+    <th class="w-1/6" data-action="click->sortable#sort" data-column="price" data-direction="asc">Price</th>
+    <th class="w-1/6 break-all" data-action="click->sortable#sort" data-column="normalised_calories" data-direction="asc">Cals</th>
 <!--    <th class="w-1/6 whitespace-normal break-words">Prot/100</th>-->
-    <th class="w-1/6 break-all">Prot/€</th>
+    <th class="w-1/6 break-all" data-action="click->sortable#sort" data-column="protein_per_euro" data-direction="asc">Prot/€</th>
   </tr>
   <% products.each do |product| %>
     <tr data-controller="clickable-row" data-clickable-row-url-value="<%= product_path(product) %>"
