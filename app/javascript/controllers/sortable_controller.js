@@ -1,66 +1,59 @@
 import {Controller} from "@hotwired/stimulus"
 
-// Connects to data-controller="sortable"
 export default class extends Controller {
-
     static values = {url: String}
 
     sort(event) {
-        const urlParams = new URLSearchParams(document.location.search);
-        let currentSortBy = [];
-        let currentDirection = [];
-        urlParams.forEach((value, key) => {
-            {
-                if (key.startsWith("sort_by")) {
-                    currentSortBy.push(value);
-                }
-                if (key.startsWith("direction")) {
-                    currentDirection.push(value);
-                }
-            }
-        })
-        // console.log(currentSortBy)
+        const url = new URL(window.location.href)
+        const params = url.searchParams
+        const column = event.target.dataset.column
 
-        let column = event.target.dataset.column;
-        console.log("column: " + column)
-        const index = currentSortBy.indexOf(column);
-        console.log(currentDirection[index])
-        // let currentDirectionValue = (index !== -1) ? currentDirection[index] : "asc";
-        let currentDirectionValue = currentDirection[index];
-        console.log("currentDirectionValue: " + currentDirectionValue)
-        let newDirection = currentDirectionValue === undefined ? "asc" : "desc";
-        console.log("new direction " + newDirection)
+        const currentSort = this.getCurrentSort(params)
 
-        // Add or update the sorting criteria
-        if (index !== -1) {
-            if (currentDirectionValue === "desc") {
-                currentSortBy.splice(index, 1)
-                currentDirection.splice(index, 1)
-                newDirection = null
-                console.log(currentSortBy)
+        const existingSortIndex = currentSort.findIndex(([col]) => col === column)
+        let newSort = []
+
+        if (existingSortIndex > -1) {
+            const [_, currentDirection] = currentSort[existingSortIndex]
+            if (currentDirection === 'asc') {
+                newSort = [
+                    ...currentSort.slice(0, existingSortIndex),
+                    [column, 'desc'],
+                    ...currentSort.slice(existingSortIndex + 1)
+                ]
             } else {
-                currentDirection[index] = newDirection
+                newSort = currentSort.filter((_, i) => i !== existingSortIndex)
             }
         } else {
-            console.log("Adding new col")
-            currentSortBy.push(column); // Add new column
-            currentDirection.push(newDirection); // Add the new direction
+            newSort = [...currentSort, [column, 'asc']]
         }
 
-        // Keep the current URL intact but modify the query params
-        const url = new URL(window.location.href);
-        // Update or add the query params without replacing them entirely
-        currentSortBy.forEach((sortColumn, idx) => {
-            url.searchParams.set(`sort_by[${idx}]`, sortColumn);
-            url.searchParams.set(`direction[${idx}]`, currentDirection[idx]);
-        });
+        this.removeSortParams(params)
 
-        if (newDirection === null) {
-            url.searchParams.delete(`sort_by[${index}]`)
-            url.searchParams.delete(`direction[${index}]`)
-        }
+        newSort.forEach(([col, dir]) => {
+            params.append('sort_by[]', col)
+            params.append('direction[]', dir)
+        })
 
-        // Ensure that Turbo visit happens with the updated URL
-        Turbo.visit(url, {action: "replace"});
+        Turbo.visit(url.toString(), {action: 'advance'})
+    }
+
+    getCurrentSort(params) {
+        const sortBy = params.getAll('sort_by[]')
+        const directions = params.getAll('direction[]')
+        return sortBy.map((col, i) => [col, directions[i] || 'asc'])
+    }
+
+    removeSortParams(params) {
+        params.delete('sort_by[]')
+        params.delete('direction[]')
+
+        const keysToDelete = []
+        params.forEach((_, key) => {
+            if (key.startsWith('sort_by[') || key.startsWith('direction[')) {
+                keysToDelete.push(key)
+            }
+        })
+        keysToDelete.forEach(key => params.delete(key))
     }
 }

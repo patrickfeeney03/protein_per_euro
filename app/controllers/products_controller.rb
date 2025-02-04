@@ -1,4 +1,5 @@
 class ProductsController < ApplicationController
+  include ProductsHelper
   allow_unauthenticated_access only: %i[ index show]
   before_action :set_product, only: %i[ show edit update destroy ]
   before_action :remove_exif, only: %i[ create update ]
@@ -13,19 +14,19 @@ class ProductsController < ApplicationController
       sort_columns = params[:sort_by]
       sort_directions = params[:direction]
 
-      sort_columns.each_pair do | pair|
-        direction = sort_directions[pair[0]] == "desc" ? "desc" : "asc"
-
-        @products = @products.order("#{pair[1]} #{direction}")
-      end
-
-      # sort_columns.each_with_index do |column, index|
-      #   direction = sort_directions[index] == "desc" ? "desc" : "asc"
+      # sort_columns.each_pair do |pair|
+      #   direction = sort_directions[pair[0]] == "desc" ? "desc" : "asc"
       #
-      #   @products = @products.order("#{column} #{direction}")
+      #   @products = @products.order("#{pair[1]} #{direction}")
       # end
+
+      sort_columns.each_with_index do |column, index|
+        direction = sort_directions[index] == "desc" ? "desc" : "asc"
+
+        @products = @products.order("#{column} #{direction}")
+      end
+      @data = manhandle_query_params(params[:sort_by], params[:direction])
     end
-    @sort_by = params[:sort_by]
   end
 
   # GET /products/1 or /products/1.json

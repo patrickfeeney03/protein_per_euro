@@ -1,11 +1,21 @@
 <table class="mt-4 text-sm table-fixed w-full" data-controller="sortable" data-sortable-url-value="<%= products_path %>">
   <tr>
-    <th class="w-2/6" data-action="click->sortable#sort" data-column="normalised_name" data-direction="asc">Name</th>
-    <th class="w-1/6" data-action="click->sortable#sort" data-column="normalised_place_bought" data-direction="asc">Shop</th>
-    <th class="w-1/6" data-action="click->sortable#sort" data-column="price" data-direction="asc">Price</th>
-    <th class="w-1/6 break-all" data-action="click->sortable#sort" data-column="normalised_calories" data-direction="asc">Cals</th>
-<!--    <th class="w-1/6 whitespace-normal break-words">Prot/100</th>-->
-    <th class="w-1/6 break-all" data-action="click->sortable#sort" data-column="protein_per_euro" data-direction="asc">Prot/€</th>
+    <th class="w-2/6" data-action="click->sortable#sort" data-column="normalised_name" data-direction="asc">
+      Name<%= (data["normalised_name"] == "asc" ? "↑" : "↓") unless data.nil? || data["normalised_name"].nil? %>
+    </th>
+    <th class="w-1/6" data-action="click->sortable#sort" data-column="normalised_place_bought" data-direction="asc">
+      Shop<%= (data["normalised_place_bought"] == "asc" ? "↑" : "↓") unless data.nil? || data["normalised_place_bought"].nil? %>
+    </th>
+    <th class="w-1/6" data-action="click->sortable#sort" data-column="price" data-direction="asc">
+      Price<%= (data["price"] == "asc" ? "↑" : "↓") unless data.nil? || data["price"].nil? %>
+    </th>
+    <th class="w-1/6 break-all" data-action="click->sortable#sort" data-column="normalised_calories" data-direction="asc">
+      Cals<%= (data["normalised_calories"] == "asc" ? "↑" : "↓") unless data.nil? || data["normalised_calories"].nil? %>
+    </th>
+    <!--    <th class="w-1/6 whitespace-normal break-words">Prot/100</th>-->
+    <th class="w-1/6 break-all" data-action="click->sortable#sort" data-column="protein_per_euro" data-direction="asc">
+      Prot/€<%= (data["protein_per_euro"] == "asc" ? "↑" : "↓") unless data.nil? || data["protein_per_euro"].nil? %>
+    </th>
   </tr>
   <% products.each do |product| %>
     <tr data-controller="clickable-row" data-clickable-row-url-value="<%= product_path(product) %>"
@@ -13,7 +23,7 @@
       <td class="whitespace-normal break-all">
         <% if product.image.present? %>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="size-4 inline align-text-bottom">
-            <path fill-rule="evenodd" d="M2 4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4Zm10.5 5.707a.5.5 0 0 0-.146-.353l-1-1a.5.5 0 0 0-.708 0L9.354 9.646a.5.5 0 0 1-.708 0L6.354 7.354a.5.5 0 0 0-.708 0l-2 2a.5.5 0 0 0-.146.353V12a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5V9.707ZM12 5a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z" clip-rule="evenodd" />
+            <path fill-rule="evenodd" d="M2 4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4Zm10.5 5.707a.5.5 0 0 0-.146-.353l-1-1a.5.5 0 0 0-.708 0L9.354 9.646a.5.5 0 0 1-.708 0L6.354 7.354a.5.5 0 0 0-.708 0l-2 2a.5.5 0 0 0-.146.353V12a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5V9.707ZM12 5a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z" clip-rule="evenodd"/>
           </svg>
         <% end %>
         <%= truncate(product.name, length: 25, omission: "") if product.name? %></td>
@@ -24,8 +34,8 @@
       </td>
       <td class="whitespace-normal break-words">
         <%= format_number_table(display_value_for_100_grams(product.calories, product)) if product.calories? %></td>
-<!--      <td class="whitespace-normal break-words">-->
-<!--        <%#= format_number_table(display_value_for_100_grams(product.protein, product)) if product.protein? %></td>-->
+      <!--      <td class="whitespace-normal break-words">-->
+      <!--        <%#= format_number_table(display_value_for_100_grams(product.protein, product)) if product.protein? %></td>-->
       <td class="whitespace-normal break-words">
         <%= format_number_table(product.protein_per_euro) if product.protein_per_euro? %></td>
     </tr>
