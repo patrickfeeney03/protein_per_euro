@@ -1,7 +1,7 @@
 class Product < ApplicationRecord
   belongs_to :user
   has_one_attached :image
-  before_save :set_protein_per_euro
+  before_save :set_protein_per_euro, :set_normalised_properties
 
   scope :sorted, -> { order(protein_per_euro: :desc) }
 
@@ -25,5 +25,15 @@ class Product < ApplicationRecord
 
   def set_protein_per_euro
     self.protein_per_euro = calculate_protein_per_euro
+  end
+
+  def set_normalised_properties
+    multiplier = 100.0 / weight_for_macros
+
+    puts "Setting normalised data for #{self}"
+    self.normalised_protein = protein * multiplier unless protein.nil?
+    self.normalised_carbohydrates = carbohydrates * multiplier unless carbohydrates.nil?
+    self.normalised_fats = fats * multiplier unless fats.nil?
+    self.normalised_calories = calories * multiplier unless calories.nil?
   end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_01_30_133331) do
+ActiveRecord::Schema[8.0].define(version: 2025_02_04_202401) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -54,6 +54,10 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_30_133331) do
     t.float "price"
     t.float "protein_per_euro"
     t.integer "user_id", null: false
+    t.float "normalised_protein"
+    t.float "normalised_calories"
+    t.float "normalised_fats"
+    t.float "normalised_carbohydrates"
     t.index ["user_id"], name: "index_products_on_user_id"
   end
 

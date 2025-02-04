@@ -16,3 +16,12 @@
 - [ ] Show prices in different currencies
 - [ ] Somehow make it easier to use in different countries, by either filtering by country etc.
 - [x] Remove GPS tagging from images
+
+- [ ] Add filtering.
+  - [ ] Foods with x-ratio between protein and carbs
+  - [ ] Foods with y-ratio between protein and fats
+  - [ ] Foods with z-ration between protein and fats and carbs
+
+- [ ] Add sorting
+
+- [ ] No longer convert serving to 100 grams in views since I now have the normalised data in the db.
