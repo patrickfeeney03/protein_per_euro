@@ -12,10 +12,10 @@
 
   <h2 class="mt-3 mb-2">Your Saved Products</h2>
   <span>Touch any product to view more details</span>
-  <%= render "table", products: @products, data: @data %>
+  <%= render "table", products: @products, data: @data, popup: @popup %>
   <%= "There are no products in your account" unless @products.any? %>
 
   <h2 class="mt-2 mb-2">Products from other people</h2>
-  <%= render "table", products: @other_products, data: @data %>
+  <%= render "table", products: @other_products, data: @data, popup: @popup %>
   <%= "There are no products in other accounts" unless @other_products.any? %>
 </div>

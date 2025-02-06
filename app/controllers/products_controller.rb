@@ -27,6 +27,10 @@ class ProductsController < ApplicationController
       end
       @data = manhandle_query_params(params[:sort_by], params[:direction])
     end
+
+    if params[:popup_for].present?
+      @popup = params[:popup_for]
+    end
   end
 
   # GET /products/1 or /products/1.json

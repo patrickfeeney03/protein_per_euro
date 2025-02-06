@@ -3,7 +3,20 @@ import {Controller} from "@hotwired/stimulus"
 export default class extends Controller {
     static values = {url: String}
 
-    sort(event) {
+    popup(params, column) {
+
+        if (params.has(`popup_for`)) {
+            const currentPopup = params.get('popup_for')
+            params.delete(`popup_for`, currentPopup);
+            if (currentPopup !== column) {
+                params.append(`popup_for`, column);
+            }
+        } else {
+            params.append(`popup_for`, column)
+        }
+    }
+
+    sort2(event) {
         const url = new URL(window.location.href)
         const params = url.searchParams
         const column = event.target.dataset.column
@@ -35,6 +48,51 @@ export default class extends Controller {
             params.append('direction[]', dir)
         })
 
+        console.log(url)
+        Turbo.visit(url.toString(), {action: 'advance'})
+
+    }
+
+    stopPropagation(event) {
+        event.stopPropagation();
+    }
+
+    sort(event) {
+        const url = new URL(window.location.href)
+        const params = url.searchParams
+        const column = event.target.dataset.column
+
+        console.log(`Column ${column} pressed`);
+        const currentSort = this.getCurrentSort(params)
+
+        this.popup(params, column);
+
+        //
+        // const existingSortIndex = currentSort.findIndex(([col]) => col === column)
+        // let newSort = []
+        //
+        // if (existingSortIndex > -1) {
+        //     const [_, currentDirection] = currentSort[existingSortIndex]
+        //     if (currentDirection === 'asc') {
+        //         newSort = [
+        //             ...currentSort.slice(0, existingSortIndex),
+        //             [column, 'desc'],
+        //             ...currentSort.slice(existingSortIndex + 1)
+        //         ]
+        //     } else {
+        //         newSort = currentSort.filter((_, i) => i !== existingSortIndex)
+        //     }
+        // } else {
+        //     newSort = [...currentSort, [column, 'asc']]
+        // }
+        //
+        // this.removeSortParams(params)
+        //
+        // newSort.forEach(([col, dir]) => {
+        //     params.append('sort_by[]', col)
+        //     params.append('direction[]', dir)
+        // })
+        //
         Turbo.visit(url.toString(), {action: 'advance'})
     }
 

@@ -2,6 +2,18 @@
   <tr>
     <th class="w-2/6" data-action="click->sortable#sort" data-column="normalised_name" data-direction="asc">
       Name<%= (data["normalised_name"] == "asc" ? "↑" : "↓") unless data.nil? || data["normalised_name"].nil? %>
+      <% if popup == "normalised_name" %>
+        <div class="absolute w-48 h-48 block bg-sky-300 rounded-lg" data-action="click->sortable#stopPropagation">
+          <button class="mt-5 rounded-md px-2 py-1 text-white bg-gray-400 hover:bg-gray-300 text-sm"
+                  data-action="click->sortable#sort2" data-column="normalised_name" data-direction="asc">
+            Change Sort Direction</button>
+          <div class="mt-5 ">
+            <span class="px-2 py-1 text-white text-sm">Filter by</span>
+            <input class="w-full" >
+          </div>
+        </div>
+      <% end %>
+
     </th>
     <th class="w-1/6" data-action="click->sortable#sort" data-column="normalised_place_bought" data-direction="asc">
       Shop<%= (data["normalised_place_bought"] == "asc" ? "↑" : "↓") unless data.nil? || data["normalised_place_bought"].nil? %>
